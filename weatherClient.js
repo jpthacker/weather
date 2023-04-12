@@ -1,10 +1,12 @@
 const apiKey = require("./apiKey");
 
 class WeatherClient {
-  fetchWeatherData(city) {
-    return fetch(
-      `http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`
+  async fetchWeatherData(city) {
+    const key = apiKey;
+    const results = await fetch(
+      `http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${key}`
     );
+    return results;
   }
 }
 
