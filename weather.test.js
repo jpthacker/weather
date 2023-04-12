@@ -1,9 +1,7 @@
-// const WeatherClient = require("./weatherClient");
 const Weather = require("./weather");
 
 describe("weather class", () => {
   it("", async () => {
-    // const client = new WeatherClient();
     const mockClient = {
       fetchWeatherData: jest.fn(),
     };

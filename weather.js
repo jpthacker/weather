@@ -5,7 +5,6 @@ class Weather {
   }
   async load(city) {
     const result = await this.client.fetchWeatherData(city);
-    // const resultObj = await result.json();
     this.data = result;
   }
   getWeatherData() {
