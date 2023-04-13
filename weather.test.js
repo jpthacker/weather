@@ -2,8 +2,7 @@ const Weather = require("./weather");
 const WeatherUI = require("./weatherUI");
 
 const displayWeatherDataMock = jest
-  .spyOn(WeatherUI.prototype, "displayWeatherData")
-  .mockImplementation(() => {});
+  .spyOn(WeatherUI.prototype, "displayWeatherData");
 
 describe("weather class", () => {
   const mockClient = {
