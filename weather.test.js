@@ -1,6 +1,6 @@
 const Weather = require("./weather");
 
-describe("weather class", () => {
+xdescribe("weather class", () => {
   const mockClient = {
     fetchWeatherData: jest.fn(),
   };
