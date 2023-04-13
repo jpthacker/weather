@@ -1,16 +1,18 @@
 const Weather = require("./weather");
 
 describe("weather class", () => {
-  // beforeEach(() => {
-  //   fetch.resetMocks();
-  // });
-  it("", async () => {
-    const mockClient = {
-      fetchWeatherData: jest.fn(),
-    };
-    mockClient.fetchWeatherData.mockResolvedValueOnce({ name: "London" });
-    const weather = new Weather(mockClient);
+  const mockClient = {
+    fetchWeatherData: jest.fn(),
+  };
+  const weather = new Weather(mockClient);
+  beforeEach(async () => {
+    mockClient.fetchWeatherData.mockResolvedValueOnce({
+      name: "London",
+      main: { temp: 12 },
+    });
     await weather.load("London");
+  });
+  it("", async () => {
     expect(weather.getWeatherData()).toEqual(
       expect.objectContaining({
         name: "London",
@@ -18,15 +20,6 @@ describe("weather class", () => {
     );
   });
   it("compares the weather in two cities and returns the warmest one", async () => {
-    const mockClient = {
-      fetchWeatherData: jest.fn(),
-    };
-    mockClient.fetchWeatherData.mockResolvedValueOnce({
-      name: "London",
-      main: { temp: 12 },
-    });
-    const weather = new Weather(mockClient);
-    await weather.load("London");
     mockClient.fetchWeatherData.mockResolvedValueOnce({
       name: "Sheffield",
       main: { temp: 15 },
@@ -35,4 +28,5 @@ describe("weather class", () => {
       "The temperature in London is 12; the temperature in Sheffield is 15: Sheffield is warmer."
     );
   });
+  it("provides user-friendly breakdown of the weather in the terminal", () => {});
 });
