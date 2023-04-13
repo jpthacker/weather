@@ -1,10 +1,15 @@
 const Weather = require("./weather");
+const WeatherUI = require("./weatherUI");
 
-xdescribe("weather class", () => {
+const displayWeatherMock = jest
+  .spyOn(WeatherUI.prototype, "displayWeather")
+  .mockImplementation(() => {});
+
+describe("weather class", () => {
   const mockClient = {
     fetchWeatherData: jest.fn(),
   };
-  const weather = new Weather(mockClient);
+  const weather = new Weather(mockClient, WeatherUI);
   beforeEach(async () => {
     mockClient.fetchWeatherData.mockResolvedValueOnce({
       name: "London",
@@ -32,12 +37,7 @@ xdescribe("weather class", () => {
   });
   it("provides user-friendly breakdown of the weather in the terminal", () => {
     weather.displayWeather();
-    expect(console.log).toHaveBeenCalledWith(`
-City:         London
-Weather:      clouds, rain
-Temperature:  12
-Feels like:   10
-Humidity:     78%
-    `);
+    expect(console.log).toHaveBeenCalledTimes(1);
+    expect(displayWeatherMock).toHaveBeenCalled();
   });
 });

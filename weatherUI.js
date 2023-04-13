@@ -4,7 +4,7 @@ class weatherUI {
   }
 
   displayWeather() {
-    console.log(`
+    return (`
 City:         ${this.city.name}
 Weather:      ${this.city.weather
       .map((weather) => {

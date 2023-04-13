@@ -1,7 +1,7 @@
 class Weather {
-  constructor(client) {
+  constructor(client, weatherUI) {
     this.client = client;
-    this.weatherUI = new weatherUI(this.client);
+    this.weatherUI = weatherUI;
     this.data = null;
   }
   async load(city) {
@@ -19,17 +19,8 @@ class Weather {
     return resultStr;
   }
   displayWeather() {
-    console.log(`
-City:         ${this.data.name}
-Weather:      ${this.data.weather
-      .map((weather) => {
-        return weather.main;
-      })
-      .join(", ")}
-Temperature:  ${this.data.main.temp}
-Feels like:   ${this.data.main.feels_like}
-Humidity:     ${this.data.main.humidity}%
-    `);
+    const weatherUI  = new this.weatherUI(this.data);
+    console.log(weatherUI.displayWeather());
   }
 }
 
