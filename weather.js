@@ -16,6 +16,15 @@ class Weather {
     const resultStr = `The temperature in ${this.data.name} is ${this.data.main.temp}; the temperature in ${givenCity.name} is ${givenCity.main.temp}: ${highest.name} is warmer.`
     return resultStr;
   }
+  displayWeather() {
+    console.log(`
+City:         ${this.data.name}
+Weather:      ${this.data.weather.map((weather) => {return weather.main}).join(', ')}
+Temperature:  ${this.data.main.temp}
+Feels like:   ${this.data.main.feels_like}
+Humidity:     ${this.data.main.humidity}%
+    `);
+  }
 }
 
 module.exports = Weather;
