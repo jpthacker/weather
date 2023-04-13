@@ -3,7 +3,7 @@ class weatherUI {
     this.city = city;
   }
 
-  displayWeather() {
+  displayWeatherData() {
     return (`
 City:         ${this.city.name}
 Weather:      ${this.city.weather

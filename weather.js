@@ -19,8 +19,8 @@ class Weather {
     return resultStr;
   }
   displayWeather() {
-    const weatherUI  = new this.weatherUI(this.data);
-    console.log(weatherUI.displayWeather());
+    const weatherUI = new this.weatherUI(this.data);
+    console.log(weatherUI.displayWeatherData());
   }
 }
 

@@ -9,7 +9,7 @@ describe("WeatherUI class", () => {
       weather: [{ main: "clouds" }, { main: "rain" }],
     };
     const weatherUI = new WeatherUI(mockCityData);
-    expect(weatherUI.displayWeather()).toBe(
+    expect(weatherUI.displayWeatherData()).toBe(
       `
 City:         London
 Weather:      clouds, rain
