@@ -4,7 +4,7 @@ class weatherUI {
   }
 
   displayWeatherData() {
-    return (`
+    return `
 City:         ${this.city.name}
 Weather:      ${this.city.weather
       .map((weather) => {
@@ -14,7 +14,7 @@ Weather:      ${this.city.weather
 Temperature:  ${this.city.main.temp}
 Feels like:   ${this.city.main.feels_like}
 Humidity:     ${this.city.main.humidity}%
-    `);
+`;
   }
 }
 
