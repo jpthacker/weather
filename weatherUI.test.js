@@ -1,7 +1,7 @@
 const WeatherUI = require("./weatherUI");
 
 describe("WeatherUI class", () => {
-  jest.setTimeout(20000);
+  jest.setTimeout(5000);
   const mockCityData = {
     name: "London",
     main: { temp: 12, feels_like: 10, humidity: 78 },

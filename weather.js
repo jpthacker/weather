@@ -3,15 +3,15 @@ const WeatherClient = require("./weatherClient");
 const readline = require("readline");
 
 class Weather {
-  constructor(client, weatherUI) {
+  constructor(client, weatherUI, io) {
     this.client = client;
     this.weatherUI = weatherUI;
+    this.io = io;
     this.data = null;
   }
 
   async load(city) {
-    const result = await this.client.fetchWeatherData(city);
-    this.data = result;
+    this.data = await this.client.fetchWeatherData(city);
   }
 
   getWeatherData() {
@@ -31,20 +31,21 @@ class Weather {
     console.log(weatherUI.displayWeatherData());
   }
 
-  run() {
-    let rl = readline.createInterface(process.stdin, process.stdout);
+  async run() {
+    let rl = this.io.createInterface(process.stdin, process.stdout);
     rl.setPrompt(`Enter a city: `);
     rl.prompt();
-    rl.on("line", async (city) => {
-      await this.load(city);
+    await rl.on("line", async (input) => {
+      await this.load(input);
       this.displayWeather();
       rl.close();
     });
+    return 'Hello';
   }
 }
 
 const weatherClient = new WeatherClient();
-const weather = new Weather(weatherClient, WeatherUI);
+const weather = new Weather(weatherClient, WeatherUI, readline);
 weather.run();
 
 module.exports = Weather;
